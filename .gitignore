@@ -1,0 +1,21 @@
+# Ignored custom folders
+PIA's/
+repo-cleanup/
+
+# Dependencies
+node_modules/
+
+# Environment and Secret Files
+.env
+.env.*
+*.env
+*.key
+secrets.json
+
+# Executables / Installers
+*.exe
+
+# OS & Editor generated files
+.DS_Store
+Thumbs.db
+.vscode/

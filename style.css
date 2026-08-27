@@ -1,0 +1,35 @@
+:root { --neon-green: #00ff41; --dark-green: #003b00; --bg-black: #050505; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Monaco', 'Courier New', monospace; background: var(--bg-black); color: var(--neon-green); overflow: hidden; height: 100vh; }
+@supports (height: 100dvh) { body { height: 100dvh; } }
+
+/* --- NEW: UTILITY FOR UNSELECTABLE TEXT --- */
+.unselectable { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
+
+.app-container { height: 100%; display: flex; flex-direction: column; position: relative; z-index: 10; }
+.safe-pb { padding-bottom: env(safe-area-inset-bottom, 0px); }
+#matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.12; pointer-events: none; }
+.circuit-pattern { position: fixed; inset: 0; z-index: 1; opacity: 0.04; background-image: linear-gradient(90deg, var(--neon-green) 1px, transparent 1px), linear-gradient(180deg, var(--neon-green) 1px, transparent 1px); background-size: 40px 40px; animation: circuitMove 60s linear infinite; pointer-events: none; }
+@keyframes circuitMove { to { background-position: 40px 40px; } }
+.scan-line { position: fixed; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(to bottom, transparent, var(--neon-green), transparent); opacity: 0.1; animation: scan 8s linear infinite; pointer-events: none; z-index: 2; }
+@keyframes scan { 0% { top: -5%; } 100% { top: 105%; } }
+.terminal-box { background: rgba(0, 15, 5, 0.95); border: 1px solid var(--neon-green); box-shadow: 0 0 15px rgba(0, 255, 65, 0.15); }
+.cyber-btn { background: transparent; border: 1px solid var(--neon-green); color: var(--neon-green); transition: all 0.2s ease; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; cursor: pointer; white-space: nowrap; }
+.cyber-btn:hover { background: var(--neon-green); color: black; box-shadow: 0 0 25px rgba(0, 255, 65, 0.4); }
+.cyber-btn:active { transform: scale(0.98); }
+#sidebar.open { transform: translateX(0); }
+.chat-history-item { padding: 12px; border: 1px solid rgba(0, 255, 65, 0.1); margin-bottom: 8px; font-size: 0.8rem; cursor: pointer; transition: all 0.2s; opacity: 0.8; overflow: hidden; display: flex; align-items: center; justify-content: space-between; }
+.chat-history-item:hover { background: rgba(0, 255, 65, 0.1); opacity: 1; }
+.chat-history-item.active { background: rgba(0, 255, 65, 0.15); border-color: var(--neon-green); opacity: 1; font-weight: bold; }
+#chat-window { overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--neon-green) rgba(0,255,65,0.05); -webkit-overflow-scrolling: touch; }
+.glitch { animation: glitch 4s infinite alternate; }
+@keyframes glitch { 0%, 95% { text-shadow: none; transform: none; } 96% { text-shadow: -2px 0 red, 2px 0 blue; transform: skewX(5deg); } 97% { text-shadow: 2px 0 red, -2px 0 blue; transform: skewX(-5deg); } 100% { text-shadow: none; transform: none; } }
+.neon-text { text-shadow: 0 0 5px var(--neon-green), 0 0 20px rgba(0, 255, 65, 0.4); }
+.message-enter { animation: slideIn 0.3s ease-out; }
+@keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: var(--neon-green); }
+.custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,255,65,0.05); }
+.hidden { display: none !important; }
+.loading-circle { border-radius: 50%; border-top-color: var(--neon-green); animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
